@@ -1,17 +1,27 @@
 import Avatar from 'react-avatar';
-import MaterialIcon from 'material-icons-react';
+import {useParams} from 'react-router-dom'
+import {getUserById} from '../actions/userActions'
+import {useHistory} from 'react-router-dom'
 
+function Profile() {
+    const { id } = useParams();
+    const user = getUserById(id)
 
-function Profile({ name, lastName, email, phone, city, country }) {
+    if(!user){
+        return (<h1>User not founded :(</h1>)
+    }
+
+    let { firstName, lastName, email, phone, city, country } = user
+    const fullName = `${firstName || 'First Name'} ${lastName || 'Last Name'}`
     return (
         <div className='big-container flex-col-center'>
             <div className='profile-container flex-row-center '  >
-                <Avatar name="Alejandro Torres" round={true} size="200" />
+                <Avatar name={fullName} round={true} size="200" />
 
                 <div style={{ margin: 20, }} >
-                    <h1 className='text-primary'>{`${name || 'Fisrt Name'} ${lastName || 'Last Name'}`}</h1>
+                    <h1 className='text-primary'>{fullName}</h1>
 
-                    <p><span class="material-icons icon">email</span> {email || 'mail@example.com'}</p>
+                    <p><span class="material-icons icon">email</span> {email || 'mail@example.com' }</p>
                     <p> <span class="material-icons icon">phone</span> {phone || '+57 3059206592'}</p>
                     <p> <span class="material-icons icon">place</span> {`${city || 'City'}, ${country || 'Country'}`}</p>
 

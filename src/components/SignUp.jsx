@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 
-import {Link} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { connect } from 'react-redux'
+import { signUp } from '../actions/authActions'
 
-function SignUp() {
+function SignUp({ errors, signUp }) {
 
     const [formData, setFormData] = useState(
         {
@@ -19,12 +21,13 @@ function SignUp() {
 
     const onChange = (e) => {
         setFormData({ ...formData, [e.target.id]: e.target.value })
-        
+
     }
-
-    const onSubmit = (e)=> {
-
+    const hist =  useHistory()
+    const onSubmit = (e) => {
         e.preventDefault();
+        signUp(formData,hist)
+
     }
 
     return (
@@ -85,4 +88,4 @@ function SignUp() {
     )
 }
 
-export default SignUp
+export default connect(state =>({ errors: state.errors }), { signUp })(SignUp)

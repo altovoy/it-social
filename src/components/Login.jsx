@@ -1,9 +1,14 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import { Link, useHistory } from "react-router-dom";
 
-import {Link, useHistory} from "react-router-dom";
+import { loginUser } from '../actions/authActions'
 
-function SignUp() {
+function Login({ error, isAuthenticated, loginUser }) {
     const history = useHistory()
+
+    isAuthenticated && history.push("/users");
+
     const [formData, setFormData] = useState(
         {
             email: '',
@@ -11,13 +16,14 @@ function SignUp() {
         }
     )
 
-    const onChange = (e) =>{
-        setFormData({...formData, [e.target.id]: e.target.value})
+    const onChange = (e) => {
+        setFormData({ ...formData, [e.target.id]: e.target.value })
     }
 
-    const onSubmit = (e)=> {
-        history.push("/profile");
+    const onSubmit = (e) => {
         e.preventDefault();
+        loginUser(formData)
+
     }
 
     return (
@@ -26,9 +32,9 @@ function SignUp() {
                 <h1 className='white' >Hello, friend!</h1>
                 <p className='white'>Enter your personal details and start journey with us</p>
                 <Link to='sign-up'>
-                <button className="button outlined white">Sign Up</button>
+                    <button className="button outlined white">Sign Up</button>
                 </Link>
-                
+
             </div>
 
             <div className='container flex-col-center text-center'>
@@ -41,15 +47,15 @@ function SignUp() {
                     <form onSubmit={onSubmit} >
                         <div className='vert-dist'>
                             <div>
-                                <input className='text-field' onChange={onChange} type='email' id='email' placeholder='Email' ></input>
+                                <input className='text-field' error={error.email} onChange={onChange} type='email' id='email' placeholder='Email' ></input>
+
                             </div>
                             <div>
-                                <input className='text-field' onChange={onChange} type='password' id='password1' placeholder='Password' ></input>
+                                <input className='text-field' error={error.password} onChange={onChange} type='password' id='password' placeholder='Password' ></input>
                             </div>
                         </div>
-                        <br/>
-                        
-                        
+                        <br />
+
 
                         <div>
                             <input className='button primary white' type='submit' value="Sign In" />
@@ -66,4 +72,14 @@ function SignUp() {
     )
 }
 
-export default SignUp
+const mapState = state => {
+    const { error, auth } = state
+    const { isAuthenticated } = auth
+    return {
+        error, isAuthenticated
+    }
+}
+
+const mapDispatch = { loginUser }
+
+export default connect(mapState, mapDispatch)(Login)
