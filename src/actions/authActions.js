@@ -48,7 +48,7 @@ export const loginUser = (user) => dispatch => {
     } else {
         if (foundedUser.password.toString() === user.password) {
             dispatch(setCurrentUser(foundedUser))
-            localStorage.setItem('user', JSON.stringify(user))
+            localStorage.setItem('user', JSON.stringify(foundedUser))
             dispatch(cleanError())
         }
         else {

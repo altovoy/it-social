@@ -1,9 +1,7 @@
-import { useHistory, Link } from 'react-router-dom'
 import Avatar from 'react-avatar'
 
 function PreviewCard({ user }) {
     const { firstName, lastName, img } = user
-    const history = useHistory()
 
     const fullName = `${firstName} ${lastName}`
     return (
