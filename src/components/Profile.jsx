@@ -1,7 +1,6 @@
 import Avatar from 'react-avatar';
 import {useParams} from 'react-router-dom'
 import {getUserById} from '../actions/userActions'
-import {useHistory} from 'react-router-dom'
 
 function Profile() {
     const { id } = useParams();
@@ -11,12 +10,12 @@ function Profile() {
         return (<h1>User not founded :(</h1>)
     }
 
-    let { firstName, lastName, email, phone, city, country } = user
+    let { firstName, lastName, email, phone, city, country, img } = user
     const fullName = `${firstName || 'First Name'} ${lastName || 'Last Name'}`
     return (
         <div className='big-container flex-col-center'>
             <div className='profile-container flex-row-center '  >
-                <Avatar name={fullName} round={true} size="200" />
+                <Avatar name={fullName} src={img} round={true} size="200" />
 
                 <div style={{ margin: 20, }} >
                     <h1 className='text-primary'>{fullName}</h1>

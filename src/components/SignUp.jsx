@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { connect } from 'react-redux'
 import { signUp } from '../actions/authActions'
 
-function SignUp({ errors, signUp }) {
+function SignUp({ error, signUp }) {
 
     const [formData, setFormData] = useState(
         {
@@ -51,27 +51,51 @@ function SignUp({ errors, signUp }) {
                         <div className='form-cols'>
                             <div>
                                 <input className='text-field' onChange={onChange} type='text' id='firstName' placeholder='First Name' ></input>
+                                <p className="error-text" >
+                                    {error.firstName}
+                                </p>
                             </div>
                             <div>
                                 <input className='text-field' onChange={onChange} type='text' id='lastName' placeholder='Last Name' ></input>
+                                <p className="error-text" >
+                                    {error.lastName}
+                                </p>
                             </div>
                             <div>
                                 <input className='text-field' onChange={onChange} type='email' id='email' placeholder='Email' ></input>
+                                <p className="error-text" >
+                                    {error.email}
+                                </p>
                             </div>
                             <div>
                                 <input className='text-field' onChange={onChange} type='tel' id='phone' placeholder='Phone number' ></input>
+                                <p className="error-text" >
+                                    {error.phone}
+                                </p>
                             </div>
                             <div>
                                 <input className='text-field' onChange={onChange} type='text' id='city' placeholder='City' ></input>
+                                <p className="error-text" >
+                                    {error.city}
+                                </p>
                             </div>
                             <div>
-                                <input className='text-field' onChange={onChange} type='text' id='country' placeholder='Country' ></input>
+                                <input className='text-field' onChange={onChange} type='text' id='country' placeholder='Country' />
+                                <p className="error-text" >
+                                    {error.country}
+                                </p>
                             </div>
                             <div>
                                 <input className='text-field' onChange={onChange} type='password' id='password1' placeholder='Password' ></input>
+                                <p className="error-text" >
+                                    {error.password1}
+                                </p>
                             </div>
                             <div>
                                 <input className='text-field' onChange={onChange} type='password' id='password2' placeholder='Confirm password' ></input>
+                                <p className="error-text" >
+                                    {error.password2}
+                                </p>
                             </div>
                         </div>
                         <br />
@@ -88,4 +112,4 @@ function SignUp({ errors, signUp }) {
     )
 }
 
-export default connect(state =>({ errors: state.errors }), { signUp })(SignUp)
+export default connect(state =>({ error: state.error }), { signUp })(SignUp)

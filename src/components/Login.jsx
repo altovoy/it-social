@@ -48,10 +48,15 @@ function Login({ error, isAuthenticated, loginUser }) {
                         <div className='vert-dist'>
                             <div>
                                 <input className='text-field' error={error.email} onChange={onChange} type='email' id='email' placeholder='Email' ></input>
-
+                                <p className="error-text" >
+                                    {error.email}
+                                </p>
                             </div>
                             <div>
                                 <input className='text-field' error={error.password} onChange={onChange} type='password' id='password' placeholder='Password' ></input>
+                                <p className="error-text" >
+                                    {error.password}
+                                </p>
                             </div>
                         </div>
                         <br />

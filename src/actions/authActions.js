@@ -1,13 +1,16 @@
 import axios from "axios";
 import store from "../store"
 import { GET_ERRORS, SET_CURRENT_USER, SET_USERS, ADD_USER} from "./types";
-
+import {signUpIntegrityTest} from '../utils'
+import isEmpty from 'is-empty'
 import swal from 'sweetalert'
+
 
 const BASE_API_URI = process.env.REACT_APP_BASE_API_URI
 
 // Register User
 export const signUp = (userData, history) => dispatch => {
+
     axios
         .post(BASE_API_URI+"/users/", {params: userData})
         .then(res => {
@@ -16,9 +19,10 @@ export const signUp = (userData, history) => dispatch => {
                 type: ADD_USER,
                 payload: res.data
             })
+            dispatch(cleanError())
             swal({
                 title: "Good job!",
-                text: "Sorry if is not your super cool user \n But for now you can enter with \n\n Email: " + email  + "\n Pass: " + password,
+                text: "Sorry if it is not your super cool user \n But for now you can enter with \n\n Email: " + email  + "\n Pass: " + password,
                 icon: "success",
                 button: "It's ok!",
               });
@@ -45,8 +49,9 @@ export const loginUser = (user) => dispatch => {
         })
     } else {
         if (foundedUser.password.toString() === user.password) {
-            dispatch(setCurrentUser(user))
+            dispatch(setCurrentUser(foundedUser))
             localStorage.setItem('user', JSON.stringify(user))
+            dispatch(cleanError())
         }
         else {
             errors['password'] = 'Incorrect password'
@@ -59,6 +64,12 @@ export const loginUser = (user) => dispatch => {
 
 };
 
+export const cleanError = () => (
+    {
+        type: GET_ERRORS,
+        payload: {}
+    }
+)
 
 // API users request
 export const requestUsers = () => dispatch => {

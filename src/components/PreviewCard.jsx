@@ -8,9 +8,13 @@ function  PreviewCard ({user}) {
         history.push(`/profile/${user.id}`)
     }
     return(
-        <div className='vertDist' style={{padding: 10, width: '200px', height:'100%'}}>
+        <div className='vertDist' 
+        style={{padding: 10, width: '200px', height:'auto', 
+        background: '#F4F8F7', 
+        borderRadius: '5px', 
+        textAlign: 'center', boxShadow: '0 2.5px 6px 0 rgb(0 0 0 / 30%)'}}>
             <h5 className='text-primary'>{`${firstName} ${lastName}`}</h5>
-            <button className='button primary' onClick={onSeeMoreClick} >
+            <button className='button normal' onClick={onSeeMoreClick} >
             See more..
             </button>
         </div>
