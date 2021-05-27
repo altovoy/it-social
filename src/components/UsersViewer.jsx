@@ -11,19 +11,23 @@ function UsersViewer({ auth, logoutUser }) {
     }
     const name = `${user.firstName} ${user.lastName}`
     return (
-        <div style={{ margin: 'auto', display: 'grid', gap: '10px', gridTemplateColumns: 'repeat(auto-fill, minmax(210px, 1fr))', padding: '80px 0 30px 0' }}>
-            <div style={{ position: 'fixed', background: 'white', top: 0, left: 0, right: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-around', width: '100%', height: '60px' }}>
+        <div className='cards-grid'>
+            <div className='app-bar'>
                 <h2 className='text-primary'>IT-Social</h2>
-                <p>Hello dear <Link to={`/profile/${user.id}`} >{user.firstName}</Link></p>
-                
-                <Avatar name={name} src={user.img} size={40} />
-                
-                <button className='button outlined' onClick={handleLogout}>Logout</button>
+                <p className="appbar-text" >Hello dear <Link to={`/profile/${user.id}`} >{user.firstName}</Link></p>
+                <Link to={`/profile/${user.id}`} >
+                <Avatar name={name} src={user.img} round={true} size={50} />
+                </Link>
+
+                <button id="appbar-button" className='button outlined' onClick={handleLogout}>Logout</button>
             </div>
 
             {
                 users && users.map(user =>
-                    <PreviewCard user={user} />)
+                    <div className='flex-items-center'>
+                        <PreviewCard user={user} />
+                    </div>
+                )
             }
         </div>
     )

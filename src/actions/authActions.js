@@ -1,8 +1,6 @@
 import axios from "axios";
 import store from "../store"
 import { GET_ERRORS, SET_CURRENT_USER, SET_USERS, ADD_USER} from "./types";
-import {signUpIntegrityTest} from '../utils'
-import isEmpty from 'is-empty'
 import swal from 'sweetalert'
 
 

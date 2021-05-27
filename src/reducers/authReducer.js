@@ -1,7 +1,6 @@
 import { SET_USERS, SET_CURRENT_USER, USER_LOADING, ADD_USER } from "../actions/types";
 
 
-
 const isEmpty = require("is-empty");
 
 const user = JSON.parse(localStorage.getItem('user'))
@@ -13,7 +12,7 @@ const initialState = {
   users: ['']
 };
 
-export default function(state = initialState, action) {
+function authReducer (state = initialState, action) {
   switch (action.type) {
     case SET_CURRENT_USER:
       
@@ -42,3 +41,6 @@ export default function(state = initialState, action) {
       return state;
   }
 }
+
+
+export default authReducer

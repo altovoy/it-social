@@ -68,7 +68,7 @@ function Login({ error, isAuthenticated, loginUser }) {
 
                     </form>
 
-                    <a href="#">Forgot your password?</a>
+                    <p>Forgot your password?</p>
 
                 </div>
 
