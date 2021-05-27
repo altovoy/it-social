@@ -1,4 +1,6 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
+
+import {Link} from "react-router-dom";
 
 function SignUp() {
 
@@ -15,16 +17,24 @@ function SignUp() {
         }
     )
 
-    const onChange = (e) =>{
-        setFormData({...formData, [e.target.id]: e.target.value})
+    const onChange = (e) => {
+        setFormData({ ...formData, [e.target.id]: e.target.value })
+        
+    }
+
+    const onSubmit = (e)=> {
+
+        e.preventDefault();
     }
 
     return (
         <div className='big-container cols-1-2'>
             <div className='container flex-col-center bg-primary text-center'>
                 <h1 className='white' >Wellcome Back!</h1>
-                <p>To keep connect with us please login with your personal info</p>
-                <button className="button outlined white">Sign In</button>
+                <p className='white'>To keep connect with us please login with your personal info</p>
+                <Link to='/'>
+                    <button className="button outlined white">Sign In</button>
+                </Link>
             </div>
 
             <div className='container flex-col-center text-center'>
@@ -34,7 +44,7 @@ function SignUp() {
 
                     </div>
 
-                    <form  >
+                    <form onSubmit={onSubmit} >
                         <div className='form-cols'>
                             <div>
                                 <input className='text-field' onChange={onChange} type='text' id='firstName' placeholder='First Name' ></input>
@@ -61,9 +71,9 @@ function SignUp() {
                                 <input className='text-field' onChange={onChange} type='password' id='password2' placeholder='Confirm password' ></input>
                             </div>
                         </div>
-                        <br/>
+                        <br />
                         <div>
-                            <input className='button primary white' type='submit' />
+                            <input className='button primary white' type='submit' value="Sign up" />
                         </div>
 
                     </form>
