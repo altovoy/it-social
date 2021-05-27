@@ -16,7 +16,7 @@ function UsersViewer({ auth, logoutUser }) {
                 <h2 className='text-primary'>IT-Social</h2>
                 <p className="appbar-text" >Hello dear <Link to={`/profile/${user.id}`} >{user.firstName}</Link></p>
                 <Link to={`/profile/${user.id}`} >
-                <Avatar name={name} src={user.img} round={true} size={50} />
+                    <Avatar name={name} src={user.img} round={true} size={50} />
                 </Link>
 
                 <button id="appbar-button" className='button outlined' onClick={handleLogout}>Logout</button>
@@ -24,9 +24,11 @@ function UsersViewer({ auth, logoutUser }) {
 
             {
                 users && users.map(user =>
-                    <div className='flex-items-center'>
-                        <PreviewCard user={user} />
-                    </div>
+                    <Link to={`/profile/${user.id}`} >
+                        <div className='flex-items-center'>
+                            <PreviewCard user={user} />
+                        </div>
+                    </Link>
                 )
             }
         </div>

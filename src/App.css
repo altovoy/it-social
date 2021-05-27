@@ -149,27 +149,40 @@
 }
 
 .app-bar {
-  position      : fixed;
-  background    : white;
-  top           : 0;
-  left          : 0;
-  right         : 0;
-  display       : flex;
+  position       : fixed;
+  background     : white;
+  top            : 0;
+  left           : 0;
+  right          : 0;
+  display        : flex;
   align-items    : center;
   justify-content: space-around;
-  width         : 100%;
-  height        : 60px;
-  box-shadow: 0 2.5px 6px 0 rgb(0 0 0 / 30%);
+  width          : 100%;
+  height         : 60px;
+  box-shadow     : 0 2.5px 6px 0 rgb(0 0 0 / 30%);
 }
 
 .cards-grid {
-  margin               : 'auto';
+  margin               : auto;
   display              : grid;
   gap                  : 10px;
-  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-  padding              : 80px 0 30px 0
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  padding              : 80px 3% 30px 3%
 }
 
+.preview-card {
+  padding      : 10%;
+  width        : 100%;
+  height       : auto;
+  background   : #F4F8F7;
+  border-radius: 5px;
+  text-align   : center;
+  box-shadow   : 0 2px 6px 0 rgb(0 0 0 / 30%);
+}
+
+.preview-card:hover{
+  box-shadow   : 0 5px 10px 0 rgb(0 0 0 / 30%);
+}
 
 
 @media only screen and (max-width: 860px) {
